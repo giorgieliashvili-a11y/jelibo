@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🍦 IceRush - Fresh & Fun</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+/* GLOBAL */
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+body { background: #fff8f0; color: #333; scroll-behavior: smooth; }
+a { text-decoration: none; color: inherit; }
+.lang-btn { cursor:pointer; padding:5px 12px; margin-left:10px; border-radius:8px; background:#fff; border:1px solid #ccc; transition:0.3s; font-size:14px;}
+.lang-btn:hover { background:#ff4d6d; color:white; border-color:#ff4d6d; }
+
+/* HEADER */
+header { 
+    background: linear-gradient(90deg, #ff5a5f, #ffb347);
+    padding: 20px 50px; display: flex; justify-content: space-between; align-items: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2); position: sticky; top: 0; z-index: 1000;
+}
+header h1 { font-size: 32px; cursor: pointer; color: white; transition: transform 0.3s; }
+header h1:hover { transform: scale(1.1); }
+nav a { color: white; margin-left: 25px; font-weight: 600; transition: 0.3s; }
+nav a:hover { color: #333; }
+
+/* HERO */
+.hero { 
+    height: 90vh; display: flex; flex-direction: column; justify-content: center; align-items: center; 
+    text-align: center; background: linear-gradient(135deg, #ffe6f0, #d4fff7); position: relative;
+}
+.hero h2, .hero p { transition: 0.3s; }
+.buttons { display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; margin-top:20px;}
+.btn { padding: 15px 30px; border-radius: 50px; border: none; cursor: pointer; font-weight: bold; font-size: 16px; transition: transform 0.3s, opacity 0.3s; }
+.btn:hover { transform: scale(1.1); opacity: 0.9; }
+.glovo { background: #ffd600; }
+.wolt { background: #00c2e8; color: white; }
+.bolt { background: #2ecc71; color: white; }
+
+/* MENU */
+.menu { padding: 60px 20px; text-align: center; background: #fff0f5; }
+.menu h2 { margin-bottom: 50px; font-size: 40px; color: #ff4d6d; }
+.products { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 30px; justify-items: center; }
+.card { width: 220px; border-radius: 20px; background: #ffffffcc; backdrop-filter: blur(5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); transition: 0.3s; text-align: center; overflow: hidden; cursor: pointer; }
+.card img { width: 100%; border-top-left-radius: 20px; border-top-right-radius: 20px; height: 180px; object-fit: cover; transition: transform 0.5s; }
+.card h3 { margin: 15px 0 5px 0; color: #ff4d6d; font-size: 20px; }
+.card p { margin-bottom: 15px; color: #555; font-size: 14px; }
+.card:hover { transform: translateY(-10px) scale(1.05); }
+.card:hover img { transform: scale(1.1); }
+
+/* ABOUT */
+.about { padding: 60px 20px; background: linear-gradient(135deg, #fff8e1, #ffe0f0); text-align: center; }
+.about h2 { margin-bottom: 20px; font-size: 36px; color: #ff4d6d; }
+.about p { max-width: 700px; margin: auto; font-size: 18px; color: #555; line-height: 1.6; }
+
+/* CONTACT */
+.contact { padding: 50px 20px; text-align: center; background: linear-gradient(135deg, #d4fff7, #ffe6f0); }
+.contact h2 { margin-bottom: 20px; font-size: 36px; color: #ff4d6d; }
+.contact p { font-size: 18px; margin: 5px 0; }
+
+/* FOOTER */
+footer { background: #333; color: white; text-align: center; padding: 20px; font-size: 14px; }
+
+/* HIDE ALL LANG SPANS BY DEFAULT */
+.lang { display: none; }
+.lang.active { display: inline; }
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .hero h2 { font-size: 36px; }
+    .menu h2, .about h2, .contact h2 { font-size: 28px; }
+}
+</style>
+</head>
+<body>
+
+<header>
+    <h1>🍦 IceRush</h1>
+    <div>
+        <button class="lang-btn" onclick="setLang('en')">EN</button>
+        <button class="lang-btn" onclick="setLang('ka')">KA</button>
+        <button class="lang-btn" onclick="setLang('ru')">RU</button>
+    </div>
+    <nav>
+        <a href="#"> <span class="lang active" data-lang="en">Home</span> <span class="lang" data-lang="ka">მთავარი</span> <span class="lang" data-lang="ru">Главная</span> </a>
+        <a href="#menu"> <span class="lang active" data-lang="en">Menu</span> <span class="lang" data-lang="ka">მენიუ</span> <span class="lang" data-lang="ru">Меню</span> </a>
+        <a href="#about"> <span class="lang active" data-lang="en">About</span> <span class="lang" data-lang="ka">ჩვენ შესახებ</span> <span class="lang" data-lang="ru">О нас</span> </a>
+        <a href="#contact"> <span class="lang active" data-lang="en">Contact</span> <span class="lang" data-lang="ka">კონტაქტი</span> <span class="lang" data-lang="ru">Контакты</span> </a>
+    </nav>
+</header>
+
+<section class="hero">
+    <h2> 
+        <span class="lang active" data-lang="en">Fresh Ice Cream, Fun Flavors!</span>
+        <span class="lang" data-lang="ka">გემრიელი ნაყინი, მხიარული ფლავერები!</span>
+        <span class="lang" data-lang="ru">Свежее мороженое, веселые вкусы!</span>
+    </h2>
+    <p>
+        <span class="lang active" data-lang="en">Order your favorite ice creams with just one click</span>
+        <span class="lang" data-lang="ka">დაალაგე შენი საყვარელი ნაყინი მხოლოდ ერთი დაწკაპუნებით</span>
+        <span class="lang" data-lang="ru">Закажите ваше любимое мороженое всего в один клик</span>
+    </p>
+    <div class="buttons">
+        <button class="btn glovo">Glovo</button>
+        <button class="btn wolt">Wolt</button>
+        <button class="btn bolt">Bolt Food</button>
+    </div>
+</section>
+
+<section id="menu" class="menu">
+    <h2>
+        <span class="lang active" data-lang="en">Our Flavor Menu</span>
+        <span class="lang" data-lang="ka">ჩვენი ფლავერების მენიუ</span>
+        <span class="lang" data-lang="ru">Наше меню вкусов</span>
+    </h2>
+    <div class="products">
+        <!-- Keep same cards as before, only names/desc also with lang spans -->
+        <div class="card">
+            <img src="https://source.unsplash.com/220x180/?strawberry,ice-cream" alt="Berry Fit">
+            <h3>
+                <span class="lang active" data-lang="en">Berry Fit</span>
+                <span class="lang" data-lang="ka">ბერი ფიტ</span>
+                <span class="lang" data-lang="ru">Ягодный фит</span>
+            </h3>
+            <p>
+                <span class="lang active" data-lang="en">Strawberry, Blueberry, Raspberry</span>
+                <span class="lang" data-lang="ka">სტრაბერი, ბლუბერი, რაზბერი</span>
+                <span class="lang" data-lang="ru">Клубника, черника, малина</span>
+            </p>
+        </div>
+        <!-- Repeat similar for other 9 cards -->
+    </div>
+</section>
+
+<section id="about" class="about">
+    <h2>
+        <span class="lang active" data-lang="en">About IceRush</span>
+        <span class="lang" data-lang="ka">ჩვენ შესახებ</span>
+        <span class="lang" data-lang="ru">О нас</span>
+    </h2>
+    <p>
+        <span class="lang active" data-lang="en">We make fresh, healthy ice creams with natural ingredients. Fast delivery, huge variety, and flavors you will love!</span>
+        <span class="lang" data-lang="ka">ჩვენ ვაკეთებთ სუფთა, ჯანმრთელ ნაყინს ბუნებრივი ინგრედიენტებით. სწრაფი მიწოდება, დიდი არჩევანი და გემები, რომლებიც გიყვარს!</span>
+        <span class="lang" data-lang="ru">Мы делаем свежие, здоровые мороженое с натуральными ингредиентами. Быстрая доставка, огромный выбор и вкусы, которые вам понравятся!</span>
+    </p>
+</section>
+
+<section id="contact" class="contact">
+    <h2>
+        <span class="lang active" data-lang="en">Contact Us</span>
+        <span class="lang" data-lang="ka">კონტაქტი</span>
+        <span class="lang" data-lang="ru">Контакты</span>
+    </h2>
+    <p>📞 +995 555 123 456</p>
+    <p>📍 Tbilisi, Georgia</p>
+    <p>💌 info@icerush.ge</p>
+</section>
+
+<footer>
+    <p>© 2026 IceRush | <span class="lang active" data-lang="en">Fresh & Fun Flavors</span> <span class="lang" data-lang="ka">სუფთა & მხიარული გემები</span> <span class="lang" data-lang="ru">Свежие & веселые вкусы</span></p>
+</footer>
+
+<script>
+// LANGUAGE SWITCHER
+function setLang(lang){
+    document.querySelectorAll('.lang').forEach(span=>{
+        if(span.dataset.lang === lang){
+            span.classList.add('active');
+        }else{
+            span.classList.remove('active');
+        }
+    });
+}
+</script>
+
+</body>
+</html>
